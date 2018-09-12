@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body ng-app="weatherApp" ng-controller="weatherAppCtrl">
+
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark indigo fixed-top">
+    <a class="navbar-brand" href="javascript:;">Weather Now</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3"
+            aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-3">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link waves-effect waves-light" href="javascript:;">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+
+
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item">
+                <a href="https://github.com/belalmujahed" target="_blank" class="nav-link waves-effect waves-light">
+                    <i class="fa fa-github"></i>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12 mt-5">
+            <div class="card ">
+                <form ng-submit="searchCity()">
+                    <div class="form-group mt-4 mb-4 ml-4 mr-4">
+                        <input type="text" placeholder="Enter City" class="form-control" ng-model="city">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 mb-2">
+
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-12 mt-4 mb-2">
+
+                    <!--weather display card -->
+                    <div class="card m-lg-4">
+                        <div ng-show="weatherContent" align="center">
+                            <img class="img-fluid" ng-src="img/ico/{{weather.weather[0].icon}}.png"
+                                 style="width:200px;height:200px;" alt="">
+
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <div ng-show="errorMessage">
+                                    <h4>Error: {{error}}</h4>
+                                </div>
+                                <div ng-hide="mainContent">
+                                    <h1>Current weather in your city</h1> <br>
+                                    <p>Powered by <a href="https://openweathermap.org/" target="_BLANK">OpenWeatherMap,
+                                        Inc.</a></p>
+                                </div>
+                                <div class="spinner" ng-show="loading"></div>
+                                <div ng-show="weatherContent" align="center">
+                                    <h1 class="card-title">{{weather.main.temp}} &deg;C</h1>
+                                    <p class="card-text">at {{weather.dt * 1000 | date:'medium'}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <!-- Example row of columns -->
+
+
+                            <div class="row" ng-show="weatherSubContent">
+
+                                <div class="col-md-3 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Description</h4>
+                                            <p class="card-text">{{weather.weather[0].description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4">
+                                    <div class="card">
+
+                                        <div class="card-body">
+
+                                            <h4 class="card-title">Wind</h4>
+                                            <p class="card-text">Direction: {{weather.wind.deg}}</p>
+                                            <p class="card-text">Speed: {{weather.wind.speed}} m/s</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4">
+                                    <div class="card">
+
+                                        <div class="card-body">
+                                            <h4 class="card-title">Pressure</h4>
+                                            <p class="card-text">{{weather.main.pressure}} hpa</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4">
+                                    <div class="card">
+
+                                        <div class="card-body">
+
+
+                                            <h4 class="card-title">Humidity</h4>
+                                            <p class="card-text">{{weather.main.humidity}} &#37;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small indigo fixed-bottom">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="#"> Belal Mujahed</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+</div>
+</div>
+<!-- /container -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+
+</html>
